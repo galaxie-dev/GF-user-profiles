@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GainFarm - User</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-status">Active</div>
+            <img src="macron2.jpg" alt="Profile Image" class="profile-image">
+            <div class="user-info-ver">
+                <h1 class="username">Mkulima Stores</h1>   
+                    <span class="verification-badge" id="verifyBtn">
+                    <span class="icon icon-verified"></span>
+                        Get Verified
+                    </span>
+            </div>
+            <span class="info-value">@mkulima_st</span>
+            <div class="user-location">
+                <span class="icon icon-location"></span>
+                <span>Nairobi, Kenya</span>
+            </div>
+        </div>
+
+        <div class="profile-body">
+            <div class="profile-section">
+                <div class="section-title">
+                    <span class="icon icon-role"></span>
+                    <span>Account Information</span>
+                </div>
+                <div class="info-card">                  
+                    <div class="info-row">
+                        <span class="info-label">Account</span>
+                        <span class="info-value">Supermarket</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">User ID</span>
+                        <span class="info-value">GF-78945612</span>
+                    </div>                    
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <div class="section-title">
+                    <span class="icon icon-phone"></span>
+                    <span>Contact Information</span>
+                </div>
+                <div class="info-card">
+                    <div class="info-row">
+                        <span class="info-label">Phone</span>
+                        <span class="info-value">+254 712 345 678</span>
+                    </div>
+                      <div class="info-row">
+                        <span class="info-label">Email</span>
+                        <span class="info-value">info@mkulimastores.co.ke</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="marketplaceBtn">
+                    <span class="icon icon-marketplace"></span>
+                    View Marketplace
+                </button>
+           
+                <button class="btn btn-outline" id="updateBtn">
+                    <span class="icon icon-update"></span>
+                    Update Profile
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verification Modal -->
+    <div class="modal" id="verificationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Account Verification</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Get verified to unlock all GainFarm features and increase trust with other users.</p>
+                
+                <h4 style="margin: 20px 0 10px; color: var(--dark-color);">Verification Process</h4>
+                
+                <div class="verification-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Submit Required Documents</div>
+                        <div class="step-description">
+                            Upload clear photos of your government-issued ID (National ID, Passport, or Driver's License).
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="verification-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Business Verification (If Applicable)</div>
+                        <div class="step-description">
+                            For business accounts, provide business registration documents and proof of address.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="verification-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Wait for Review</div>
+                        <div class="step-description">
+                            Our team will review your documents within 48 hours.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="verification-benefits">
+                    <h4 style="margin: 20px 0 10px; color: var(--dark-color);">Verification Benefits</h4>
+                    
+                    <div class="benefit-item">
+                        <span class="benefit-icon icon icon-check"></span>
+                        <span>Increased transaction limits</span>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <span class="benefit-icon icon icon-check"></span>
+                        <span>Verified badge on your profile</span>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <span class="benefit-icon icon icon-check"></span>
+                        <span>Priority customer support</span>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <span class="benefit-icon icon icon-check"></span>
+                        <span>Access to premium features</span>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <span class="benefit-icon icon icon-check"></span>
+                        <span>Higher trust score in the marketplace</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" id="startVerification">
+                Start Verification Process
+            </button>
+        </div>
+    </div>
+
+    <!-- update profile -->
+<div class="modal" id="updateModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Update Profile</h3>
+            <button class="close-modal" id="closeUpdateModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="profileUpdateForm">
+                <div class="form-group">
+                    <label for="profileImage">Profile Image</label>
+                    <div class="image-upload-container">
+                        <img src="" alt="Profile Image" id="profileImagePreview" class="profile-image-preview">
+                        <input type="file" id="profileImage" accept="image/*" style="display: none;">
+                        <button type="button" class="btn btn-outline" id="uploadImageBtn" style="margin-top: 10px;">
+                            Change Image
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" value="Mkulima Stores" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" value="@mkulima_st" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" value="Nairobi, Kenya" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" id="phoneNumber" value="+254 712 345 678" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="info@mkulimastores.co.ke" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Account Type</label>
+                    <select id="role" class="form-input">
+                        <option value="Supermarket">Supermarket</option>
+                        <option value="Investor">Investor</option>
+                        <option value="Financial Institution">Financial Institution</option>
+                        <option value="Financial Institution">Government Institution</option>
+                         <option value="Financial Institution">Farmer</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="cancelUpdateBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <script>
+        // DOM Elements
+        const verifyBtn = document.getElementById('verifyBtn');
+        const closeModal = document.getElementById('closeModal');
+        const verificationModal = document.getElementById('verificationModal');
+        const startVerification = document.getElementById('startVerification');
+
+        // Event Listeners
+        verifyBtn.addEventListener('click', () => {
+            verificationModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeModal.addEventListener('click', () => {
+            verificationModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        startVerification.addEventListener('click', () => {
+            alert('Verification process started! You will be redirected to the verification page.');
+            verificationModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === verificationModal) {
+                verificationModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Marketplace button functionality
+        document.getElementById('marketplaceBtn').addEventListener('click', () => {
+            alert('Redirecting to GainFarm Marketplace...');
+        });
+
+        // Update profile button     
+
+        const updateBtn = document.getElementById('updateBtn');
+        const updateModal = document.getElementById('updateModal');
+        const closeUpdateModal = document.getElementById('closeUpdateModal');
+        const cancelUpdateBtn = document.getElementById('cancelUpdateBtn');
+        const profileUpdateForm = document.getElementById('profileUpdateForm');
+        const uploadImageBtn = document.getElementById('uploadImageBtn');
+        const profileImage = document.getElementById('profileImage');
+        const profileImagePreview = document.getElementById('profileImagePreview');
+
+        // Open update modal
+        updateBtn.addEventListener('click', () => {
+            updateModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close update modal
+        function closeUpdateModalFunc() {
+            updateModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        closeUpdateModal.addEventListener('click', closeUpdateModalFunc);
+        cancelUpdateBtn.addEventListener('click', closeUpdateModalFunc);
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === updateModal) {
+                closeUpdateModalFunc();
+            }
+        });
+
+        // Image upload functionality
+        uploadImageBtn.addEventListener('click', () => {
+            profileImage.click();
+        });
+
+        profileImage.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    profileImagePreview.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission
+        profileUpdateForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Here you would normally send the data to your backend
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                username: document.getElementById('username').value,
+                location: document.getElementById('location').value,
+                phoneNumber: document.getElementById('phoneNumber').value,
+                email: document.getElementById('email').value,
+                role: document.getElementById('role').value,
+                // You would need to handle the image upload separately
+            };
+            
+            console.log('Profile updated:', formData);
+            alert('Profile updated successfully!');
+            closeUpdateModalFunc();
+        });
+    </script>
+</body>
+</html>
