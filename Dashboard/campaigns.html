@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GainFarm | MyShop Campaigns</title>
+    <link href="admin-styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/GaniFarmLogo.png" alt="GainFarm Logo">
+                <h2>GainFarm</h2>
+            </div>
+
+            <div class="sidebar-menu">       
+                 <a href="products.html" class="menu-item">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span>Products</span>
+                </a>
+                <a href="orders.html" class="menu-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Orders</span>
+                    <span class="badge">12 New</span>
+                </a>
+
+                <a href="analytics.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+               
+                <a href="messages.html" class="menu-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Messages</span>
+                    <span class="badge">3 New</span>
+                </a>
+              
+                <a href="campaigns.html" class="menu-item" style="
+                background-color: rgba(0, 128, 55, 0.2);
+                color: var(--green);
+                font-weight: 600;">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Campaigns</span>
+                </a>
+            
+                <a href="settings.html" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Manage Account</span>
+                </a>
+             
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="toggle-sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                        <div class="toggle-ball"></div>
+                    </div>
+                    <a href="notifications.html">
+                    <div class="header-icon">
+                        <i class="fas fa-bell"></i>
+                        <div class="notification-badge">3</div>
+                    </div>
+                    </a>
+                    <a href="messages.html">
+                    <div class="header-icon">
+                        <i class="fas fa-envelope"></i>
+                        <div class="notification-badge">5</div>
+                    </div>
+                    </a>
+                    <div class="user-profile">
+                        <div class="user-avatar">M</div>
+                        <span class="user-name">Mkulima</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content">
+                <h1 class="page-title">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Advertisements
+                </h1>
+
+                <!-- Stats Cards -->
+                <div class="stats-container">
+                    <div class="stat-card animate-fadeIn delay-1">
+                        <div class="stat-icon" style="background-color: var(--green);">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-title">Total Advirtisements</div>
+                            <div class="stat-value">1,050</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 12.5% from last month
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card animate-fadeIn delay-2">
+                        <div class="stat-icon" style="background-color: var(--orange);">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-title">Adverts Leading to purchase</div>
+                            <div class="stat-value">186</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 8.3% from last month
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card animate-fadeIn delay-3">
+                        <div class="stat-icon" style="background-color: #6f42c1;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-title">New Customers</div>
+                            <div class="stat-value">42</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 5.2% from last month
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card animate-fadeIn delay-4">
+                        <div class="stat-icon" style="background-color: #dc3545;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-title">Low TurnOver Ads</div>
+                            <div class="stat-value">5</div>
+                            <div class="stat-change negative">
+                                <i class="fas fa-arrow-down"></i> Need restocking
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="chart-container">
+                    <div class="card chart-card animate-fadeIn">
+                        <div class="card-header">
+                            <div class="card-title">Insights Analytics</div>
+                            <div class="card-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-calendar"></i> This Month
+                                </button>
+                            </div>
+                        </div>
+                        <canvas id="salesChart" height="300"></canvas>
+                    </div>
+
+                    <div class="card chart-card animate-fadeIn">
+                        <div class="card-header">
+                            <div class="card-title">Ads With Most Insights</div>
+                        </div>
+                        <canvas id="categoryChart" height="300"></canvas>
+                    </div>
+                </div>
+
+                
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="admin-script.js">
+       
+    </script>
+</body>
+</html>

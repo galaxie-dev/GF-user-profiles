@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GainFarm | MyShop Dashboard</title>
+    <link href="admin-styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css" rel="stylesheet">
+
+    <style>
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header,
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+    </style>
+
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/GaniFarmLogo.png" alt="GainFarm Logo">
+                <h2>GainFarm</h2>
+            </div>
+
+            <div class="sidebar-menu">              
+
+     
+                  <a href="products.html" class="menu-item" style="background-color: rgba(0, 128, 55, 0.2);
+                color: var(--green);
+                font-weight: 600;">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span>Products</span>
+                </a>
+                <a href="orders.html" class="menu-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Orders</span>
+                    <span class="badge">12 New</span>
+                </a>
+                <a href="analytics.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                
+                <a href="messages.html" class="menu-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Messages</span>
+                    <span class="badge">3 New</span>
+                </a>
+
+                <a href="campaigns.html" class="menu-item">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Campaigns</span>
+                </a>
+        
+                <a href="settings.html" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Manage Account</span>
+                </a>
+               
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="toggle-sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                        <div class="toggle-ball"></div>
+                    </div>
+                    <a href="notifications.html">
+                    <div class="header-icon">
+                        <i class="fas fa-bell"></i>
+                        <div class="notification-badge">3</div>
+                    </div>
+                    </a>
+                    <a href="messages.html">
+                    <div class="header-icon">
+                        <i class="fas fa-envelope"></i>
+                        <div class="notification-badge">5</div>
+                    </div>
+                    </a>
+                    <div class="user-profile">
+                        <div class="user-avatar">M</div>
+                        <span class="user-name">Mkulima</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content">
+                <h1 class="page-title">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Products
+                </h1>
+
+                <!-- Products -->
+                <div class="card animate-fadeIn">
+                    <div class="card-header">
+                        <div class="card-title">Products</div>
+                        <div class="card-actions">
+                            <button class="btn btn-secondary btn-sm">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                            <button class="btn btn-primary btn-sm">                                
+                                <i class="fas fa-warehouse"></i>Sort: 
+                                <select class="form-control form-select">
+                                    <option><i class="fas fa-warehouse"></i ></option>
+                                    <option>Poultry</option>
+                                    <option>Fertilizers</option>
+                                    <option>Pesticides</option>
+                                    <option>Animal Feed</option>
+                                    <option>Farm Tools</option>
+                                    <option>Dairy Equipment</option>
+                                </select>
+                            </button>
+                         
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+
+                <!-- Products -->
+                <div class="card animate-fadeIn">
+                    <div class="card-header">
+                        <div class="card-title">My Listed Products</div>
+                        <div class="card-actions">
+                            <button id="addProductModal" class="btn btn-orange btn-sm">
+                                <i class="fas fa-plus"></i> Post a Product
+                            </button>
+                            
+                        </div>
+                    </div>
+                    <div class="product-grid">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/organic-fertiliser.webp" alt="Organic Fertilizer">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Fertilizers</div>
+                                <div class="product-name">Organic Fertilizer 20kg</div>
+                                <div class="product-price">KSh 2,500</div>
+                                <div class="product-actions">
+                                    <span>Stock: 120kg</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/poultry-feed.jpg" alt="Poultry Feed">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Animal Feed</div>
+                                <div class="product-name">Poultry Feed 50kg</div>
+                                <div class="product-price">KSh 3,200</div>
+                                <div class="product-actions">
+                                    <span>Stock: 7</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/herbicide.jpg" alt="Herbicide">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Pesticides</div>
+                                <div class="product-name">Herbicide 5L</div>
+                                <div class="product-price">KSh 1,800</div>
+                                <div class="product-actions">
+                                    <span>Stock: 12</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/Water-Pump.jpg" alt="Water Pump">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Farm Tools</div>
+                                <div class="product-name">Water Pump 1HP</div>
+                                <div class="product-price">KSh 12,500</div>
+                                <div class="product-actions">
+                                    <span>Stock: 3</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/organic-fertiliser.webp" alt="Organic Fertilizer">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Fertilizers</div>
+                                <div class="product-name">Organic Fertilizer 20kg</div>
+                                <div class="product-price">KSh 2,500</div>
+                                <div class="product-actions">
+                                    <span>Stock: 120kg</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/poultry-feed.jpg" alt="Poultry Feed">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Animal Feed</div>
+                                <div class="product-name">Poultry Feed 50kg</div>
+                                <div class="product-price">KSh 3,200</div>
+                                <div class="product-actions">
+                                    <span>Stock: 7</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/herbicide.jpg" alt="Herbicide">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Pesticides</div>
+                                <div class="product-name">Herbicide 5L</div>
+                                <div class="product-price">KSh 1,800</div>
+                                <div class="product-actions">
+                                    <span>Stock: 12</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/Water-Pump.jpg" alt="Water Pump">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Farm Tools</div>
+                                <div class="product-name">Water Pump 1HP</div>
+                                <div class="product-price">KSh 12,500</div>
+                                <div class="product-actions">
+                                    <span>Stock: 3</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/organic-fertiliser.webp" alt="Organic Fertilizer">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Fertilizers</div>
+                                <div class="product-name">Organic Fertilizer 20kg</div>
+                                <div class="product-price">KSh 2,500</div>
+                                <div class="product-actions">
+                                    <span>Stock: 120kg</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/poultry-feed.jpg" alt="Poultry Feed">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Animal Feed</div>
+                                <div class="product-name">Poultry Feed 50kg</div>
+                                <div class="product-price">KSh 3,200</div>
+                                <div class="product-actions">
+                                    <span>Stock: 7</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/herbicide.jpg" alt="Herbicide">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Pesticides</div>
+                                <div class="product-name">Herbicide 5L</div>
+                                <div class="product-price">KSh 1,800</div>
+                                <div class="product-actions">
+                                    <span>Stock: 12</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/Water-Pump.jpg" alt="Water Pump">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Farm Tools</div>
+                                <div class="product-name">Water Pump 1HP</div>
+                                <div class="product-price">KSh 12,500</div>
+                                <div class="product-actions">
+                                    <span>Stock: 3</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/organic-fertiliser.webp" alt="Organic Fertilizer">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Fertilizers</div>
+                                <div class="product-name">Organic Fertilizer 20kg</div>
+                                <div class="product-price">KSh 2,500</div>
+                                <div class="product-actions">
+                                    <span>Stock: 120kg</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/poultry-feed.jpg" alt="Poultry Feed">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Animal Feed</div>
+                                <div class="product-name">Poultry Feed 50kg</div>
+                                <div class="product-price">KSh 3,200</div>
+                                <div class="product-actions">
+                                    <span>Stock: 7</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/herbicide.jpg" alt="Herbicide">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Pesticides</div>
+                                <div class="product-name">Herbicide 5L</div>
+                                <div class="product-price">KSh 1,800</div>
+                                <div class="product-actions">
+                                    <span>Stock: 12</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/Water-Pump.jpg" alt="Water Pump">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Farm Tools</div>
+                                <div class="product-name">Water Pump 1HP</div>
+                                <div class="product-price">KSh 12,500</div>
+                                <div class="product-actions">
+                                    <span>Stock: 3</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/organic-fertiliser.webp" alt="Organic Fertilizer">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Fertilizers</div>
+                                <div class="product-name">Organic Fertilizer 20kg</div>
+                                <div class="product-price">KSh 2,500</div>
+                                <div class="product-actions">
+                                    <span>Stock: 120kg</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/poultry-feed.jpg" alt="Poultry Feed">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Animal Feed</div>
+                                <div class="product-name">Poultry Feed 50kg</div>
+                                <div class="product-price">KSh 3,200</div>
+                                <div class="product-actions">
+                                    <span>Stock: 7</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/herbicide.jpg" alt="Herbicide">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Pesticides</div>
+                                <div class="product-name">Herbicide 5L</div>
+                                <div class="product-price">KSh 1,800</div>
+                                <div class="product-actions">
+                                    <span>Stock: 12</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="images/Water-Pump.jpg" alt="Water Pump">
+                                <span class="product-badge">Low Stock</span>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Farm Tools</div>
+                                <div class="product-name">Water Pump 1HP</div>
+                                <div class="product-price">KSh 12,500</div>
+                                <div class="product-actions">
+                                    <span>Stock: 3</span>
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- Add Product Modal -->
+    <!-- Modal -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Add New Product</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="productForm">
+          <div class="form-group">
+            <label class="form-label">Product Name</label>
+            <input type="text" class="form-control" placeholder="Enter product name" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Short Description</label>
+            <textarea class="form-control" rows="1" placeholder="Short description"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" rows="5" placeholder="Enter product description" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Benefits</label>
+            <textarea class="form-control" rows="3" placeholder="Enter a few benefits of the product"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Storage Instructions</label>
+            <textarea class="form-control" rows="3" placeholder="Give Storage Instructions" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-control" required>
+              <option>Select category</option>
+              <option>Fertilizers</option>
+              <option>Pesticides</option>
+              <option>Animal Feed</option>
+              <option>Farm Tools</option>
+              <option>Dairy Equipment</option>
+              <option>Fruits</option>
+              <option>Vegetables</option>
+              <option>Grains</option>
+              <option>Livestock</option>
+              <option>Poultry</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Unit</label>
+            <select id="unit" class="form-control" required>
+              <option>Select Unit of Measure</option>
+              <option>Per bag</option>
+              <option>Per kg</option>
+              <option>Per crate</option>
+              <option>Per chick</option>
+              <option>Per sack</option>
+              <option>Per litre</option>
+              <option>Per unit</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Unit Price (KSh)</label>
+            <input type="number" id="unitPrice" class="form-control" placeholder="Enter the unit price" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Stock Quantity</label>
+            <input type="number" id="quantity" class="form-control" placeholder="Enter the total available quantity" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Current Price (KSh)</label>
+            <input type="number" id="currentPrice" class="form-control" disabled>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Previous/ Old Price (KSh)</label>
+            <input type="number" class="form-control" placeholder="Enter price">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Main Image</label>
+            <input type="file" class="form-control image-upload" accept="image/*">
+            <canvas class="image-preview" style="display:none;"></canvas>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Sub Images</label>
+            <input type="file" class="form-control image-upload" accept="image/*">
+            <canvas class="image-preview" style="display:none;"></canvas>
+
+            <input type="file" class="form-control image-upload" accept="image/*">
+            <canvas class="image-preview" style="display:none;"></canvas>
+
+            <input type="file" class="form-control image-upload" accept="image/*">
+            <canvas class="image-preview" style="display:none;"></canvas>
+
+            <input type="file" class="form-control image-upload" accept="image/*">
+            <canvas class="image-preview" style="display:none;"></canvas>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-close">Cancel</button>
+        <button class="btn btn-primary">Save Product</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+           document.addEventListener('DOMContentLoaded', function () {
+            // Get modal elements
+            const openBtn = document.getElementById('addProductModal');
+            const modal = document.getElementById('productModal');
+            const closeBtns = document.querySelectorAll('.modal-close');
+            
+            // Open modal when button is clicked
+            if (openBtn && modal) {
+                openBtn.addEventListener('click', () => {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            // Close modal when close buttons are clicked
+            closeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Rest of your existing JavaScript for price calculation and image preview
+            const unitPrice = document.getElementById('unitPrice');
+            const quantity = document.getElementById('quantity');
+            const currentPrice = document.getElementById('currentPrice');
+
+            function updatePrice() {
+                if (unitPrice && quantity && currentPrice) {
+                    const price = (parseFloat(unitPrice.value) || 0) * (parseFloat(quantity.value) || 0);
+                    currentPrice.value = price.toFixed(2);
+                }
+            }
+
+            if (unitPrice && quantity) {
+                unitPrice.addEventListener('input', updatePrice);
+                quantity.addEventListener('input', updatePrice);
+            }
+
+            // Image preview functionality
+            const imageInputs = document.querySelectorAll('.image-upload');
+            
+            imageInputs.forEach((input) => {
+                input.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    const canvas = input.nextElementSibling;
+
+                    if (!file || !file.type.startsWith('image/')) {
+                        alert('Only image files are allowed.');
+                        e.target.value = '';
+                        if (canvas) canvas.style.display = 'none';
+                        return;
+                    }
+
+                    const img = new Image();
+                    img.onload = () => {
+                        if (!canvas) return;
+                        const size = Math.min(img.width, img.height);
+                        const sx = (img.width - size) / 2;
+                        const sy = (img.height - size) / 2;
+
+                        const ctx = canvas.getContext('2d');
+                        canvas.width = 150;
+                        canvas.height = 150;
+                        ctx.clearRect(0, 0, 150, 150);
+                        ctx.drawImage(img, sx, sy, size, size, 0, 0, 150, 150);
+                        canvas.style.display = 'block';
+                    };
+                    img.src = URL.createObjectURL(file);
+                });
+            });
+        });
+  </script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="admin-script.js"></script>
+</body>
+
+  
+</html>
