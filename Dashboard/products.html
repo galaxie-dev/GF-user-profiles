@@ -103,15 +103,10 @@
         <main class="main-content">
             <!-- Header -->
             <header class="header">
-                <div class="header-left">
-                    <button class="toggle-sidebar">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <div class="search-bar">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search...">
-                    </div>
+                <div class="header-left">                  
+                    <!--  -->
                 </div>
+         
 
                 <div class="header-right">
                     <div class="theme-toggle">
@@ -150,22 +145,24 @@
                     <div class="card-header">
                         <div class="card-title">Products</div>
                         <div class="card-actions">
+                            <div class="header-left">                  
+                                <div class="search-bar">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" placeholder="Search...">
+                                </div>
+                            </div>
                             <button class="btn btn-secondary btn-sm">
                                 <i class="fas fa-sync-alt"></i> Refresh
-                            </button>
-                            <button class="btn btn-primary btn-sm">                                
-                                <i class="fas fa-warehouse"></i>Sort: 
-                                <select class="form-control form-select">
-                                    <option><i class="fas fa-warehouse"></i ></option>
-                                    <option>Poultry</option>
-                                    <option>Fertilizers</option>
-                                    <option>Pesticides</option>
-                                    <option>Animal Feed</option>
-                                    <option>Farm Tools</option>
-                                    <option>Dairy Equipment</option>
-                                </select>
-                            </button>
-                         
+                            </button>                       
+                            <select class="btn btn-primary btn-sm">
+                                <option><i class="fas fa-warehouse">Sort by:</i ></option>
+                                <option>Poultry</option>
+                                <option>Fertilizers</option>
+                                <option>Pesticides</option>
+                                <option>Animal Feed</option>
+                                <option>Farm Tools</option>
+                                <option>Dairy Equipment</option>
+                            </select>                          
                         </div>
                     </div>
                     <div class="table-responsive">
